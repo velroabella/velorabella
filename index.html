@@ -155,6 +155,19 @@
   .blog-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#2C1810;line-height:1.4;margin-bottom:16px;}
   .blog-link{font-size:10px;letter-spacing:3px;text-transform:uppercase;font-family:sans-serif;color:#A08878;border-bottom:1px solid #C9A84C;padding-bottom:2px;}
 
+  /* BLOG MODAL */
+  .blog-modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(44,24,16,0.85);z-index:1000;overflow-y:auto;padding:40px 20px;}
+  .blog-modal{background:#FDFAF5;max-width:780px;margin:0 auto;position:relative;}
+  .blog-modal-hero{width:100%;height:360px;object-fit:cover;display:block;}
+  .blog-modal-hero-placeholder{width:100%;height:360px;background:linear-gradient(135deg,#EECFC6,#E8D5A3);display:flex;align-items:center;justify-content:center;}
+  .blog-modal-body{padding:48px;}
+  .blog-modal-close{position:absolute;top:20px;right:20px;background:#2C1810;color:#F5ECD7;border:none;width:40px;height:40px;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;}
+  .blog-modal-meta{font-size:9px;letter-spacing:3px;text-transform:uppercase;font-family:sans-serif;color:#C9A84C;margin-bottom:16px;}
+  .blog-modal-title{font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,36px);font-weight:400;color:#2C1810;line-height:1.25;margin-bottom:24px;}
+  .blog-modal-content{font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;line-height:1.9;color:#5C3D2E;}
+  .blog-card{cursor:pointer;}
+  .blog-card:hover .blog-title{color:#C9A84C;}
+
   /* BOOKING */
   .booking{background:linear-gradient(135deg,#2C1810,#3D2E28);padding:120px 24px;text-align:center;}
   .booking h2{color:#F5ECD7;}
@@ -398,12 +411,43 @@
 </section>
 
 <script>
+var allBlogPosts = [];
+
+function formatDate(str) {
+  var d = new Date(str);
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return isNaN(d.getTime()) ? str : months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+}
+
+function openBlogModal(index) {
+  var post = allBlogPosts[index];
+  if(!post) return;
+  document.getElementById('blog-modal-meta').innerHTML = formatDate(post.date) + ' &nbsp;&middot;&nbsp; ' + post.category;
+  document.getElementById('blog-modal-title').textContent = post.title;
+  document.getElementById('blog-modal-content').innerHTML = post.content ? post.content.replace(/\n/g,'<br><br>') : post.excerpt;
+  var imgWrap = document.getElementById('blog-modal-img-wrap');
+  imgWrap.innerHTML = post.image ? '<img class="blog-modal-hero" src="'+post.image+'" alt="'+post.title+'">' : '<div class="blog-modal-hero-placeholder"><span style="font-size:48px;color:#C9A84C44;">&#10022;</span></div>';
+  document.getElementById('blog-modal-overlay').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeBlogModal(e) {
+  if(e.target === document.getElementById('blog-modal-overlay')) closeBlogModalBtn();
+}
+
+function closeBlogModalBtn() {
+  document.getElementById('blog-modal-overlay').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
 function renderPosts(posts) {
+  allBlogPosts = posts;
   var grid = document.getElementById('blog-grid');
   var gradients = ['linear-gradient(135deg,#EECFC6,#E8D5A3)','linear-gradient(135deg,#F5ECD7,#D4948A88)','linear-gradient(135deg,#E8D5A3,#F2DDD5)'];
   grid.innerHTML = posts.slice(0,3).map(function(post,i){
+    var dateStr = formatDate(post.date);
     var imgHtml = post.image ? '<div class="blog-img" style="background:url('+post.image+') center/cover no-repeat;"></div>' : '<div class="blog-img" style="background:'+gradients[i%3]+';display:flex;align-items:center;justify-content:center;"><span style=\"font-size:32px;color:#C9A84C44;\">&#10022;</span></div>';
-    return '<div class="blog-card">'+imgHtml+'<div class="blog-body"><div class="blog-meta">'+post.date+' &nbsp;&middot;&nbsp; '+post.category+'</div><div class="blog-title">'+post.title+'</div><div style="font-family:Georgia,serif;font-size:15px;color:#A08878;line-height:1.7;margin:10px 0 16px;">'+post.excerpt+'</div></div></div>';
+    return '<div class="blog-card" onclick="openBlogModal('+i+')">'+imgHtml+'<div class="blog-body"><div class="blog-meta">'+dateStr+' &nbsp;&middot;&nbsp; '+post.category+'</div><div class="blog-title">'+post.title+'</div><div style="font-family:Georgia,serif;font-size:15px;color:#A08878;line-height:1.7;margin:10px 0 16px;">'+post.excerpt+'</div><span class="blog-link">Read More</span></div></div>';
   }).join('');
 }
 
@@ -417,6 +461,19 @@ fetch('https://raw.githubusercontent.com/velroabella/velorabella/main/posts.json
     document.getElementById('blog-grid').innerHTML = '<div style="text-align:center;padding:40px;color:#A08878;font-family:Georgia,serif;font-size:18px;grid-column:1/-1;">New posts coming soon. Stay beautiful!</div>';
   });
 </script>
+
+<!-- BLOG MODAL -->
+<div class="blog-modal-overlay" id="blog-modal-overlay" onclick="closeBlogModal(event)">
+  <div class="blog-modal" id="blog-modal">
+    <button class="blog-modal-close" onclick="closeBlogModalBtn()">&#x2715;</button>
+    <div id="blog-modal-img-wrap"></div>
+    <div class="blog-modal-body">
+      <div class="blog-modal-meta" id="blog-modal-meta"></div>
+      <h2 class="blog-modal-title" id="blog-modal-title"></h2>
+      <div class="blog-modal-content" id="blog-modal-content"></div>
+    </div>
+  </div>
+</div>
 
 <!-- BOOKING -->
 <section id="book" class="booking">
