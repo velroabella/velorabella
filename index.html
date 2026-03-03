@@ -403,7 +403,7 @@ function renderPosts(posts) {
   var gradients = ['linear-gradient(135deg,#EECFC6,#E8D5A3)','linear-gradient(135deg,#F5ECD7,#D4948A88)','linear-gradient(135deg,#E8D5A3,#F2DDD5)'];
   grid.innerHTML = posts.slice(0,3).map(function(post,i){
     var imgHtml = post.image ? '<div class="blog-img" style="background:url('+post.image+') center/cover no-repeat;"></div>' : '<div class="blog-img" style="background:'+gradients[i%3]+';display:flex;align-items:center;justify-content:center;"><span style=\"font-size:32px;color:#C9A84C44;\">&#10022;</span></div>';
-    return '<div class="blog-card">'+imgHtml+'<div class="blog-body"><div class="blog-meta">'+post.date+' &nbsp;&middot;&nbsp; '+post.category+'</div><div class="blog-title">'+post.title+'</div><div style="font-family:Georgia,serif;font-size:15px;color:#A08878;line-height:1.7;margin:10px 0 16px;">'+post.excerpt+'</div><a href="blog-'+post.slug+'.html" class="blog-link">Read More</a></div></div>';
+    return '<div class="blog-card">'+imgHtml+'<div class="blog-body"><div class="blog-meta">'+post.date+' &nbsp;&middot;&nbsp; '+post.category+'</div><div class="blog-title">'+post.title+'</div><div style="font-family:Georgia,serif;font-size:15px;color:#A08878;line-height:1.7;margin:10px 0 16px;">'+post.excerpt+'</div></div></div>';
   }).join('');
 }
 
