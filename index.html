@@ -398,22 +398,38 @@
 </section>
 
 <script>
+var starterPosts = [
+  {slug:'bridal-makeup-last-all-day-florida',title:'How to Make Your Bridal Makeup Last All Day in Florida Heat',date:'March 4, 2026',category:'Bridal',excerpt:'South Florida humidity is beautiful — but it is not always a bride\'s best friend. Here is how we ensure your look stays flawless from ceremony to the last dance.'},
+  {slug:'airbrush-vs-traditional-wedding-makeup',title:'Airbrush vs Traditional Makeup: Which is Right for Your Wedding?',date:'March 4, 2026',category:'Tips',excerpt:'Both techniques are beautiful. The right choice depends on your skin type, your venue, and the look you are going for. Here is how to decide.'},
+  {slug:'2026-wedding-makeup-trends-south-florida',title:'2026 Wedding Makeup Trends Every South Florida Bride Should Know',date:'March 4, 2026',category:'Trends',excerpt:'From soft glam to glass skin bridal looks, 2026 is redefining what luxury wedding makeup looks like. Here are the trends we are loving right now.'}
+];
+
+function renderPosts(posts) {
+  var grid = document.getElementById('blog-grid');
+  var gradients = ['linear-gradient(135deg,#EECFC6,#E8D5A3)','linear-gradient(135deg,#F5ECD7,#D4948A88)','linear-gradient(135deg,#E8D5A3,#F2DDD5)'];
+  grid.innerHTML = posts.slice(0,3).map(function(post,i){
+    var imgHtml = post.image ? '<div class="blog-img" style="background:url('+post.image+') center/cover no-repeat;"></div>' : '<div class="blog-img" style="background:'+gradients[i%3]+';display:flex;align-items:center;justify-content:center;"><span style=\"font-size:32px;color:#C9A84C44;\">&#10022;</span></div>';
+    return '<div class="blog-card">'+imgHtml+'<div class="blog-body"><div class="blog-meta">'+post.date+' &nbsp;&middot;&nbsp; '+post.category+'</div><div class="blog-title">'+post.title+'</div><div style="font-family:Georgia,serif;font-size:15px;color:#A08878;line-height:1.7;margin:10px 0 16px;">'+post.excerpt+'</div><a href="blog-'+post.slug+'.html" class="blog-link">Read More</a></div></div>';
+  }).join('');
+}
+
 fetch('https://raw.githubusercontent.com/velroabella/velorabella/main/posts.json?v=' + Date.now())
   .then(function(r){ return r.json(); })
-  .then(function(posts){
-    var grid = document.getElementById('blog-grid');
-    if(!posts || posts.length === 0){
-      grid.innerHTML = '<div style="text-align:center;padding:40px;color:#A08878;font-family:Georgia,serif;font-size:18px;grid-column:1/-1;">New posts coming Tuesday. Stay beautiful!</div>';
-      return;
+  .then(function(livePosts){
+    var allPosts = [];
+    if(livePosts){
+      var liveArray = Array.isArray(livePosts) ? livePosts : [livePosts];
+      // Add live posts first, then starter posts that aren't duplicates
+      allPosts = liveArray.concat(starterPosts.filter(function(s){
+        return !liveArray.some(function(l){ return l.slug === s.slug; });
+      }));
+    } else {
+      allPosts = starterPosts;
     }
-    var gradients = ['linear-gradient(135deg,#EECFC6,#E8D5A3)','linear-gradient(135deg,#F5ECD7,#D4948A88)','linear-gradient(135deg,#E8D5A3,#F2DDD5)'];
-    grid.innerHTML = posts.slice(0,3).map(function(post,i){
-      var imgHtml = post.image ? '<div class="blog-img" style="background:url('+post.image+') center/cover no-repeat;"></div>' : '<div class="blog-img" style="background:'+gradients[i%3]+';display:flex;align-items:center;justify-content:center;"><span style=\"font-size:32px;color:#C9A84C44;\">&#10022;</span></div>';
-      return '<div class="blog-card">'+imgHtml+'<div class="blog-body"><div class="blog-meta">'+post.date+' &nbsp;&middot;&nbsp; '+post.category+'</div><div class="blog-title">'+post.title+'</div><div style="font-family:Georgia,serif;font-size:15px;color:#A08878;line-height:1.7;margin:10px 0 16px;">'+post.excerpt+'</div><a href="blog-'+post.slug+'.html" class="blog-link">Read More</a></div></div>';
-    }).join('');
+    renderPosts(allPosts);
   })
   .catch(function(){
-    document.getElementById('blog-grid').innerHTML = '<div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#EECFC6,#E8D5A3);"></div><div class="blog-body"><div class="blog-meta">Mar 2026 &nbsp;&middot;&nbsp; Bridal</div><div class="blog-title">How to Make Your Bridal Makeup Last All Day in Florida Heat</div><a href="#" class="blog-link">Read More</a></div></div><div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#F5ECD7,#D4948A88);"></div><div class="blog-body"><div class="blog-meta">Mar 2026 &nbsp;&middot;&nbsp; Tips</div><div class="blog-title">Airbrush vs Traditional Makeup: Which is Right for Your Wedding?</div><a href="#" class="blog-link">Read More</a></div></div><div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#E8D5A3,#F2DDD5);"></div><div class="blog-body"><div class="blog-meta">Mar 2026 &nbsp;&middot;&nbsp; Trends</div><div class="blog-title">2026 Wedding Makeup Trends Every South Florida Bride Should Know</div><a href="#" class="blog-link">Read More</a></div></div>';
+    renderPosts(starterPosts);
   });
 </script>
 
