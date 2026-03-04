@@ -451,7 +451,7 @@ function renderPosts(posts) {
   }).join('');
 }
 
-fetch('https://raw.githubusercontent.com/velroabella/velorabella/main/posts.json?v=' + Date.now())
+fetch('posts.json?v=' + Date.now())
   .then(function(r){ return r.json(); })
   .then(function(data){
     var posts = Array.isArray(data) ? data : [data];
