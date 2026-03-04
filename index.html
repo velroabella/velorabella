@@ -451,7 +451,8 @@ function renderPosts(posts) {
   }).join('');
 }
 
-fetch('posts.json?v=' + Date.now())
+document.addEventListener('DOMContentLoaded', function() {
+  fetch('posts.json?v=' + Date.now())
   .then(function(r){ return r.json(); })
   .then(function(data){
     var posts = Array.isArray(data) ? data : [data];
@@ -459,7 +460,7 @@ fetch('posts.json?v=' + Date.now())
   })
   .catch(function(){
     document.getElementById('blog-grid').innerHTML = '<div style="text-align:center;padding:40px;color:#A08878;font-family:Georgia,serif;font-size:18px;grid-column:1/-1;">New posts coming soon. Stay beautiful!</div>';
-  });
+  });});
 </script>
 
 <!-- BLOG MODAL -->
