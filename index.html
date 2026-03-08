@@ -72,6 +72,7 @@
   .hero h1.outline{color:transparent;-webkit-text-stroke:1.5px #C9A84C;}
   .hero-sub{color:#A08878;font-size:clamp(12px,1.6vw,16px);letter-spacing:5px;text-transform:uppercase;font-style:italic;margin:28px auto 52px;max-width:380px;}
   .hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+  .hero.fade-in {opacity: 1;transform: translateY(0);}
   .btn-primary{background:linear-gradient(135deg,#C9A84C,#E8D5A3);color:#2C1810;border:none;padding:16px 44px;font-family:'Playfair Display',serif;font-size:12px;letter-spacing:4px;text-transform:uppercase;cursor:pointer;font-weight:700;}
   .btn-primary:hover{opacity:0.88;}
   .scroll-hint{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0.4;}
@@ -453,11 +454,11 @@ function renderPosts(posts) {
 
 document.addEventListener('DOMContentLoaded', function() {
   fetch('posts.json?v=' + Date.now())
-  .then(function(r){ return r.json(); })
-  .then(function(data){
-    var posts = Array.isArray(data) ? data : [data];
-    if(posts.length > 0) renderPosts(posts);
-  })
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      var posts = Array.isArray(data) ? data : [data];
+      if(posts.length > 0) renderPosts(posts);
+    })
   .catch(function(){
     document.getElementById('blog-grid').innerHTML = '<div style="text-align:center;padding:40px;color:#A08878;font-family:Georgia,serif;font-size:18px;grid-column:1/-1;">New posts coming soon. Stay beautiful!</div>';
   });});
@@ -586,11 +587,20 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script>
   // Scroll header
   window.addEventListener('scroll', function() {
-    document.getElementById('site-header').classList.toggle('scrolled', window.scrollY > 60);
+    document.getElementById('site-header')
+      .classList.toggle('scrolled', window.scrollY > 60);
   });
 
   // Hero fade in
-  window.addEventListener('load', fu
+  window.addEventListener('load', function() {
+    const hero = document.querySelector('.hero');
+
+    if (hero) {
+      hero.classList.add('fade-in');
+    }
+  });
+</script>
