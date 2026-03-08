@@ -1,1 +1,10 @@
-[{object}]
+[
+    {
+      "slug": "test",
+      "title": "test",
+      "date": "test",
+      "category": "test",
+      "excerpt": "test",
+      "content": "test",
+      "image": "test"
+}]
