@@ -1,19 +1,10 @@
-[{
-  "slug": "test-post-1",
-   "title": "Test Post 1",
-   "date": "2026-03-08",
-  "category": "testing",
-  "exerepr": "Test description 1",
-  "content": "This is a test post 1.",
-  "image": "https://example.com/test1.jpg
-"
-},{"
-   "slug": "test-post-2",
-  "title": "Test Post 2",
-   "date": "2026-03-08",
-  "category": "testing",
-  "exerepr": "Test description 2",
-  "content": "This is a test post 2.",
-  "image": "https://example.com/test2.jpg
-"
+[
+    {
+      "slug": "test",
+      "title": "test",
+      "date": "test",
+      "category": "test",
+      "excerpt": "test",
+      "content": "test",
+      "image": "https://images.unsplash.com/photo-1662833834361-91c01779e985?ixid=M3w4ODY5OTB8MHwxfHNlYXJjaHwxfHxicmlkYWwlMjBtYWtldXAlMjB3ZWRkaW5nJTIwZmxvcmlkYXxlbnwwfHx8fDE3NzI5MjUyODl8MA&ixlib=rb-4.1.0"
 }]
