@@ -1,10 +1,1 @@
-[
-    {
-      "slug": "test",
-      "title": "test",
-      "date": "test",
-      "category": "test",
-      "excerpt": "test",
-      "content": "test",
-      "image": "test"
-}]
+[{"date":"test","slug":"test","image":"test","title":"test","content":"test","excerpt":"test","category":"test"}]
