@@ -1,10 +1,20 @@
 [
-    {
-      "slug": "test",
-      "title": "test",
-      "date": "test",
-      "category": "test",
-      "excerpt": "test",
-      "content": "test",
-      "image": "https://images.unsplash.com/photo-1662833834361-91c01779e985?ixid=M3w4ODY5OTB8MHwxfHNlYXJjaHwxfHxicmlkYWwlMjBtYWtldXAlMjB3ZWRkaW5nJTIwZmxvcmlkYXxlbnwwfHx8fDE3NzMwNzQzOTV8MA&ixlib=rb-4.1.0"
-}]
+  {
+    "slug": "test",
+    "title": "test",
+    "date": "test",
+    "category": "test",
+    "excerpt": "test",
+    "content": "test",
+    "image": "https://images.unsplash.com/photo-1662833834361-91c01779e985?ixid=M3w4ODY5OTB8MHwxfHNlYXJjaHwxfHxicmlkYWwlMjBtYWtldXAlMjB3ZWRkaW5nJTIwZmxvcmlkYXxlbnwwfHx8fDE3NzMwNzQzOTV8MA&ixlib=rb-4.1.0"
+  },
+  {
+    "slug": "soft-glam-vs-full-glam-finding-your-bridal-makeup-moment",
+    "title": "Soft Glam vs. Full Glam: Finding Your Bridal Makeup Moment",
+    "date": "February 11, 2025",
+    "category": "Bridal",
+    "excerpt": "Choosing between soft glam and full glam can feel overwhelming, but the right look is simply the one that makes you feel most like yourself.",
+    "content": "Soft glam embraces luminous skin, feathery lashes, and neutral tones that photograph beautifully in Fort Lauderdale's golden natural light. Full glam, on the other hand, brings bold contour, dramatic eyes, and a high-impact finish that commands every grand ballroom entrance. The secret is working with your artist to strike the perfect balance between timeless elegance and your own signature style.",
+    "image": "https://images.unsplash.com/photo-1662833834361-91c01779e985?ixid=M3w4ODY5OTB8MHwxfHNlYXJjaHwxfHxicmlkYWwlMjBtYWtldXAlMjB3ZWRkaW5nJTIwZmxvcmlkYXxlbnwwfHx8fDE3NzMwNzQzOTV8MA&ixlib=rb-4.1.0"
+  }
+])
