@@ -60,6 +60,16 @@
   .logo span{color:#C9A84C;}
   nav a{font-family:sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#3D2E28;opacity:0.65;transition:opacity 0.2s;margin:0 16px;}
   nav a:hover{opacity:1;}
+  .nav-dropdown{position:relative;display:inline-block;}
+  .dropdown-menu{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);background:#fff;min-width:200px;z-index:2000;box-shadow:0 8px 24px rgba(44,24,16,0.13);padding:20px 0 8px 0;margin-top:0;}
+  .dropdown-menu::before{content:'';position:absolute;top:10px;left:50%;transform:translateX(-50%);border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:7px solid #C9A84C;}
+  .dropdown-menu a{display:block;padding:10px 22px;font-family:sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#3D2E28;opacity:0.65;border-bottom:1px solid #F5ECD7;text-decoration:none;white-space:nowrap;}
+  .dropdown-menu a:first-child{border-top:2px solid #C9A84C;}
+  .dropdown-menu a:last-child{border-bottom:none;}
+  .dropdown-menu a:hover{background:#FDF6EC;opacity:1;color:#C9A84C;}
+  .nav-dropdown:hover .dropdown-menu{display:block;}
+  .dropdown-chevron{font-size:9px;margin-left:2px;display:inline-block;transition:transform 0.2s;}
+  .nav-dropdown:hover .dropdown-chevron{transform:rotate(180deg);}
   .btn-gold{background:linear-gradient(135deg,#C9A84C,#E8D5A3);color:#2C1810;border:none;padding:10px 26px;font-family:sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;font-weight:700;}
   .btn-gold:hover{opacity:0.9;}
   .btn-outline{background:transparent;color:#3D2E28;border:1px solid #C9A84C88;padding:14px 32px;font-family:'Playfair Display',serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;}
@@ -253,7 +263,7 @@
     <nav>
       <a href="#about">About</a>
       <a href="#services">Services</a>
-      <a href="bridal-makeup-fort-lauderdale.html">Bridal</a>
+      <div class="nav-dropdown"><a href="bridal-makeup-fort-lauderdale.html">Bridal <span class="dropdown-chevron">&#9662;</span></a><div class="dropdown-menu"><a href="bridal-makeup-aventura.html">Aventura</a><a href="bridal-makeup-boca-raton.html">Boca Raton</a><a href="bridal-makeup-cape-coral.html">Cape Coral</a><a href="bridal-makeup-coral-gables.html">Coral Gables</a><a href="bridal-makeup-fort-lauderdale.html">Fort Lauderdale</a><a href="bridal-makeup-fort-myers.html">Fort Myers</a><a href="bridal-makeup-miami.html">Miami</a><a href="bridal-makeup-naples.html">Naples</a><a href="bridal-makeup-west-palm-beach.html">West Palm Beach</a></div></div>
       <a href="#gallery">Gallery</a>
       <a href="#blog">Blog</a>
       <a href="https://velorabella.myshopify.com/" target="_blank" rel="noopener noreferrer">Shop</a>
